@@ -382,7 +382,6 @@ MonoBehaviour:
       m_Action: Move
       m_Flags: 8
     m_Flags: 0
-  move: {x: 0, y: 0}
   Animator: {fileID: 1260309099}
 --- !u!114 &1260309098
 MonoBehaviour:
@@ -536,14 +535,14 @@ RectTransform:
   m_GameObject: {fileID: 1778304456}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.8556, y: 1.8556, z: 1.8556}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 262038553}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0025064, y: -0.0024437}
+  m_AnchoredPosition: {x: 0.0025024, y: -0.0024567}
   m_SizeDelta: {x: 1031.5, y: 578.24}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1778304458
