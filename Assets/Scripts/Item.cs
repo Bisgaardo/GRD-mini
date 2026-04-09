@@ -1,6 +1,7 @@
 using Unity;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class Item : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
@@ -18,6 +19,14 @@ public class Item : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndD
     void Update()
     {
         
+    }
+
+    public void rotate()
+    {
+        Debug.Log("R");
+        int rot=0;
+        rot += 90;
+        rectTransform.rotation = Quaternion.Euler(0,0,rot);
     }
 
     public void OnPointerDown(PointerEventData eventData)

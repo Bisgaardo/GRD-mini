@@ -991,6 +991,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Item",
+            "id": "ee90cb7d-eddc-413e-b5b1-9025d5bfca57",
+            "actions": [
+                {
+                    "name": "Rotate",
+                    "type": "Button",
+                    "id": "e67cad48-f5ab-4836-968d-e529be83e162",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "b3ed6a11-a078-4e1b-9739-3a84c6f4f37d",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
