@@ -863,7 +863,7 @@ MonoBehaviour:
       - m_Target: {fileID: 661688885}
         m_TargetAssemblyTypeName: Item, Assembly-CSharp
         m_MethodName: rotate
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1039,7 +1039,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d875afdf075d1be458870e107c6b458a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: af5c7acff5d88124c861c7eba9618d61, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1484,7 +1484,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f97a54c86d80d0a4ab1f1c4041c47287, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cb5c1a71240fb2842b6ccc9255678358, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
