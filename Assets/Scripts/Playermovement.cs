@@ -1,19 +1,48 @@
+using UnityEditor.Experimental.GraphView;
+using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 public class Playermovement : MonoBehaviour
 { 
 	public InputAction MoveAction;
-   
+	public Vector2 move;
+	
+	public Animator Animator;
+	
 	void Start()
 	{ 
-		MoveAction.Enable();  
+		MoveAction.Enable();
+
 	}
    
 	void Update()
 	{ 
-		Vector2 move = MoveAction.ReadValue<Vector2>();
-		Debug.Log(move);
-		Vector2 position = (Vector2)transform.position + move * 0.01f;
+		move = MoveAction.ReadValue<Vector2>();
+		Vector2 position = (Vector2)transform.position + move.normalized * 0.01f;
 		transform.position = position;
+		checkanimation();
+	}
+
+	
+	void checkanimation()
+	{
+		Animator.SetBool("walkDown", false);
+		Animator.SetBool("walkUp", false);
+		Animator.SetBool("walkLeft", false);
+		Animator.SetBool("walkRight", false);
+
+		if (move.y > 0)
+			Animator.SetBool("walkUp", true);
+
+		if (move.y < 0)
+			Animator.SetBool("walkDown", true);
+
+		if (move.x < 0)
+			Animator.SetBool("walkLeft", true);
+
+		if (move.x > 0)
+			Animator.SetBool("walkRight", true);
+		
+		
 	}
 }
