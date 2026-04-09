@@ -21,12 +21,12 @@ public class Item : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndD
         
     }
 
-    public void rotate()
+    public void rotate(InputAction.CallbackContext context)
     {
-        Debug.Log("R");
-        int rot=0;
-        rot += 90;
-        rectTransform.rotation = Quaternion.Euler(0,0,rot);
+        if (context.performed)
+        {
+            rectTransform.Rotate(0,0,90);
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData)
