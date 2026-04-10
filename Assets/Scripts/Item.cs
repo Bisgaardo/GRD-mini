@@ -9,16 +9,18 @@ public class Item : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndD
     [SerializeField] private Canvas canvas;
 
     private CanvasGroup canvasGroup;
+    
+    private Backpackmenu currentSlot;
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetSlot(Backpackmenu slot)
     {
-        
+        Debug.Log("item");
+        currentSlot = slot;
     }
 
     public void rotate(InputAction.CallbackContext context)
@@ -36,6 +38,12 @@ public class Item : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndD
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        // release slot BEFORE dragging
+        if (currentSlot != null)
+        {
+            currentSlot.ClearSlot();
+            currentSlot = null;
+        }
         canvasGroup.blocksRaycasts = false;
         canvasGroup.alpha = 0.5f;
 
@@ -52,6 +60,8 @@ public class Item : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndD
     {
         rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
     }
+    
+    
 
     
 }

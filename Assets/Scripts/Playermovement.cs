@@ -8,11 +8,12 @@ public class Playermovement : MonoBehaviour
 	public Vector2 move;
 	
 	public Animator Animator;
+	public GameObject Inv;
 	
 	void Start()
 	{ 
 		MoveAction.Enable();
-
+		Inv.SetActive(false);
 	}
    
 	void Update()
@@ -23,7 +24,16 @@ public class Playermovement : MonoBehaviour
 		checkanimation();
 	}
 
-	
+	public void openInv(InputAction.CallbackContext context)
+	{
+		if (context.started)
+		{
+			Inv.SetActive(!Inv.activeSelf);
+
+		}
+	}
+
+
 	void checkanimation()
 	{
 		Animator.SetBool("walkDown", false);

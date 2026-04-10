@@ -1,36 +1,57 @@
 using System;
 using System.Net.Mime;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class Backpackmenu : MonoBehaviour, IDropHandler
 {
-    private Image img;
+    private Item currentitem;
 
+    public bool isThrow;
+    
     private void Awake()
     {
-        img = GetComponent<Image>();
     }
 
     public void OnDrop(PointerEventData eventData)
     {
         if (eventData.pointerDrag != null)
         {
+            Item draggeditem = eventData.pointerDrag.GetComponent<Item>(); //gets the dragged item
+            if (draggeditem == null)
+            {
+                return; //stops if loop 
+            }
+
+            if (currentitem != null)
+            {
+                Debug.Log("occupied!");
+                return;
+            }
+            Debug.Log("Drop");
             eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition =
                 GetComponent<RectTransform>().anchoredPosition;
+            currentitem = draggeditem;
+            draggeditem.SetSlot(this);
+        }
+
+        if (isThrow)
+        {
+            Destroy(currentitem.gameObject);
         }
 
     }
-
-    private void OnTriggerStay2D(Collider2D col)
+    public void ClearSlot()
     {
-        if (col.CompareTag("Item"))
-        {
-            Debug.Log("hit");
-            img.color = Color.black;
-
-        }
+        Debug.Log("clear slot");
+        currentitem = null;
+    }
+    
+    public void PlaceItem(Item item)
+    {
+        currentitem = item;
     }
 }
 

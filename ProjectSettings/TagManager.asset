@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Slot
   - Item
+  - ThrowAway
   layers:
   - Default
   - TransparentFX
