@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 7cec6411d48aae84599d9e762431966f
+guid: c193d23b03d0ff44bafc9918639d4d20
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5820498930605268091
-    second: SodaCan(Unused)_0
+      213: 5748355137533521549
+    second: Pizza(Used)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SodaCan(Unused)_0
+      name: Pizza(Used)_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 8
-        width: 1024
-        height: 1517
+        x: 7
+        y: 11
+        width: 25
+        height: 21
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5836bb99f0f693fa0800000000000000
-      internalID: -5820498930605268091
+      spriteID: d8e2a7f9a8246cf40800000000000000
+      internalID: 5748355137533521549
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      SodaCan(Unused)_0: -5820498930605268091
+      Pizza(Used)_0: 5748355137533521549
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
