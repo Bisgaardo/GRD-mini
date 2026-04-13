@@ -9,6 +9,8 @@ public class Item : MonoBehaviour
 
     private List<Slot> lockedSlots = new List<Slot>();
 
+    public int Size;
+
     void Awake()
     {
         cam = Camera.main;
@@ -63,7 +65,7 @@ public class Item : MonoBehaviour
         }
 
         // Need at least 1 slot to snap to
-        if (overlappedSlots.Count == 0)
+        if (overlappedSlots.Count != Size)
         {
             ReturnToOrigin();
             return;
