@@ -1,67 +1,110 @@
-using Unity;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
 
-public class Item : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
+public class Item : MonoBehaviour
 {
-    private RectTransform rectTransform;
-    [SerializeField] private Canvas canvas;
+    private Vector3 originalPosition;
+    private bool isDragging;
+    private Camera cam;
 
-    private CanvasGroup canvasGroup;
-    
-    private Backpackmenu currentSlot;
-    private void Awake()
+    private List<Slot> lockedSlots = new List<Slot>();
+
+    public int Size;
+
+    void Awake()
     {
-        rectTransform = GetComponent<RectTransform>();
-        canvasGroup = GetComponent<CanvasGroup>();
+        cam = Camera.main;
     }
 
-    public void SetSlot(Backpackmenu slot)
+    void OnMouseDown()
     {
-        Debug.Log("item");
-        currentSlot = slot;
+        // Release previously locked slots
+        foreach (Slot slot in lockedSlots)
+            slot.ClearSlot();
+        lockedSlots.Clear();
+
+        originalPosition = transform.position;
+        isDragging = true;
     }
 
-    public void rotate(InputAction.CallbackContext context)
+    void OnMouseDrag()
     {
-        if (context.performed)
+        if (!isDragging) return;
+        Vector3 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+        transform.position = new Vector3(mousePos.x, mousePos.y, 0);
+    }
+
+    void OnMouseUp()
+    {
+        isDragging = false;
+        TrySnap();
+    }
+
+    void TrySnap()
+    {
+        // Find all slots currently overlapping this item's collider
+        Collider2D[] hits = Physics2D.OverlapBoxAll(transform.position,
+            GetComponent<Collider2D>().bounds.size, 0f);
+
+        List<Slot> overlappedSlots = new List<Slot>();
+        foreach (Collider2D hit in hits)
         {
-            rectTransform.Rotate(0,0,90);
+            Slot slot = hit.GetComponent<Slot>();
+            if (slot != null)
+                overlappedSlots.Add(slot);
+        }
+
+        // Check all overlapped slots are free
+        foreach (Slot slot in overlappedSlots)
+        {
+            if (slot.IsOccupied())
+            {
+                ReturnToOrigin();
+                return;
+            }
+        }
+
+        // Need at least 1 slot to snap to
+        if (overlappedSlots.Count != Size)
+        {
+            ReturnToOrigin();
+            return;
+        }
+
+        // Snap position to center of overlapped slots
+        Vector3 center = Vector3.zero;
+        foreach (Slot slot in overlappedSlots)
+            center += slot.transform.position;
+        center /= overlappedSlots.Count;
+
+        transform.position = center;
+
+        // Lock all overlapped slots to this item
+        foreach (Slot slot in overlappedSlots)
+        {
+            slot.OccupySlot(this);
+            lockedSlots.Add(slot);
+        }
+
+        originalPosition = transform.position;
+    }
+
+    void ReturnToOrigin()
+    {
+        transform.position = originalPosition;
+
+        // Re-lock original slots
+        Collider2D[] hits = Physics2D.OverlapBoxAll(transform.position,
+            GetComponent<Collider2D>().bounds.size, 0f);
+
+        foreach (Collider2D hit in hits)
+        {
+            Slot slot = hit.GetComponent<Slot>();
+            if (slot != null)
+            {
+                slot.OccupySlot(this);
+                lockedSlots.Add(slot);
+            }
         }
     }
-
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        //throw new System.NotImplementedException();
-    }
-
-    public void OnBeginDrag(PointerEventData eventData)
-    {
-        // release slot BEFORE dragging
-        if (currentSlot != null)
-        {
-            currentSlot.ClearSlot();
-            currentSlot = null;
-        }
-        canvasGroup.blocksRaycasts = false;
-        canvasGroup.alpha = 0.5f;
-
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        canvasGroup.blocksRaycasts = true;
-        canvasGroup.alpha = 1f;
-
-    }
-
-    public void OnDrag(PointerEventData eventData)
-    {
-        rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
-    }
-    
-    
-
-    
 }

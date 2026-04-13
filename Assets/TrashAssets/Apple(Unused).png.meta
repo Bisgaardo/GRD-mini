@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+<<<<<<<< HEAD:Assets/TrashAssets/Apple(Unused).png.meta
 guid: 046dbb268cc1fa24d910a638e17cf627
+========
+guid: ba88313301f2b52439ab82f0e0583ce6
+>>>>>>>> origin/main:Assets/TrashAssets/SodaCan(Unused).png.meta
+=======
+guid: 53f80e173577ec345a5ea044cb90265f
+>>>>>>> origin/main
 TextureImporter:
   internalIDToNameTable:
   - first:
