@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 7cec6411d48aae84599d9e762431966f
+guid: 3032e4089a6a46445a8b53087f97d3ac
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5820498930605268091
-    second: SodaCan(Unused)_0
+      213: 6211399152755567963
+    second: Apple(Used)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SodaCan(Unused)_0
+      name: Apple(Used)_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 8
-        width: 1024
-        height: 1517
+        y: 0
+        width: 31
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5836bb99f0f693fa0800000000000000
-      internalID: -5820498930605268091
+      spriteID: b5d682abe92533650800000000000000
+      internalID: 6211399152755567963
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      SodaCan(Unused)_0: -5820498930605268091
+      Apple(Used)_0: 6211399152755567963
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
