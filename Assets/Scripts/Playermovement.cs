@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.UI;
 using UnityEngine;
@@ -9,7 +10,9 @@ public class Playermovement : MonoBehaviour
 	
 	public Animator Animator;
 	public GameObject Inv;
-	
+
+	private Item selectedItem;
+
 	void Start()
 	{ 
 		MoveAction.Enable();
@@ -29,7 +32,19 @@ public class Playermovement : MonoBehaviour
 		if (context.started)
 		{
 			Inv.SetActive(!Inv.activeSelf);
+		}
+	}
 
+	public void setSelected(Item item)
+	{
+		selectedItem = item;
+	}
+
+	public void rotate(InputAction.CallbackContext context)
+	{
+		if (context.performed && Inv)
+		{
+			selectedItem.transform.Rotate(0,0,90);
 		}
 	}
 
@@ -52,7 +67,5 @@ public class Playermovement : MonoBehaviour
 
 		if (move.x > 0)
 			Animator.SetBool("walkRight", true);
-		
-		
 	}
 }

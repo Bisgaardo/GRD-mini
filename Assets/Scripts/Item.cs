@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Item : MonoBehaviour
 {
@@ -11,12 +13,13 @@ public class Item : MonoBehaviour
 
     public int Size;
 
+    public Playermovement playerMovement;
     void Awake()
     {
         cam = Camera.main;
     }
 
-    void OnMouseDown()
+    public void OnMouseDown()
     {
         // Release previously locked slots
         foreach (Slot slot in lockedSlots)
@@ -25,6 +28,7 @@ public class Item : MonoBehaviour
 
         originalPosition = transform.position;
         isDragging = true;
+        playerMovement.setSelected(this);
     }
 
     void OnMouseDrag()
@@ -38,6 +42,7 @@ public class Item : MonoBehaviour
     {
         isDragging = false;
         TrySnap();
+        playerMovement.setSelected(null);
     }
 
     void TrySnap()
@@ -107,4 +112,6 @@ public class Item : MonoBehaviour
             }
         }
     }
+
+   
 }
