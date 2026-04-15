@@ -1,10 +1,11 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Hunger : MonoBehaviour
 {
     public Slider HungerSlider;
-    public float HungerDrainRate = 5f;
+    public float HungerDrainRate = 0.01f;
 
     public Transform Respawn;
     public bool isDead;
@@ -13,6 +14,7 @@ public class Hunger : MonoBehaviour
     void Start()
     {
         beginHunger = true;
+        HungerSlider.value = HungerSlider.maxValue;
     }
 
     void Update()
@@ -20,7 +22,7 @@ public class Hunger : MonoBehaviour
         if (!beginHunger) return;
 
         HungerSlider.value -= HungerDrainRate * Time.deltaTime;
-        HungerSlider.value = Mathf.Clamp(HungerSlider.value, 0, HungerSlider.maxValue);
+        HungerSlider.value = Mathf.Clamp(HungerSlider.value, HungerSlider.minValue, HungerSlider.maxValue);
 
         if (HungerSlider.value <= 0 && !isDead)
         {
@@ -28,17 +30,22 @@ public class Hunger : MonoBehaviour
         }
     }
 
-    public void Eat(float amount)
-    {
-        HungerSlider.value += amount;
-        HungerSlider.value = Mathf.Clamp(HungerSlider.value, 0, HungerSlider.maxValue);
-    }
-
     void Die()
     {
         transform.position = Respawn.position;
-        beginHunger = false;
         HungerSlider.value = HungerSlider.maxValue;
         isDead = true;
+
+        StartCoroutine(RestartHunger());
+    }
+
+    IEnumerator RestartHunger()
+    {
+        beginHunger = false;
+
+        yield return new WaitForSeconds(2f);
+
+        beginHunger = true;
+        isDead = false;
     }
 }
