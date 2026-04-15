@@ -20,9 +20,13 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Item.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Playermovement.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UsedItem.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="3C6xjijb7apvT8f6bx7WaQK3S9x" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -81,7 +85,10 @@
       <workItem from="1775719985666" duration="7622000" />
       <workItem from="1775730034189" duration="9997000" />
       <workItem from="1775806272141" duration="13750000" />
-      <workItem from="1776071476809" duration="6546000" />
+      <workItem from="1776071476809" duration="7034000" />
+      <workItem from="1776156138115" duration="7599000" />
+      <workItem from="1776242742590" duration="1608000" />
+      <workItem from="1776249777150" duration="3715000" />
     </task>
     <servers />
   </component>

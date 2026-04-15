@@ -1,23 +1,7 @@
 fileFormatVersion: 2
-<<<<<<< Updated upstream
 guid: 33a9a97940b3def40a59c04490b4c29a
-=======
-<<<<<<<< Updated upstream:Assets/Backpack/InventorySlot.png.meta
-guid: 94595da15e2ec2645974c9f35c141b77
 TextureImporter:
   internalIDToNameTable: []
-========
-guid: 41ac5bf1530e593408b835f68e296704
->>>>>>> Stashed changes
-TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: 4342657810453335571
-    second: Backpack(Closed)_0
-<<<<<<< Updated upstream
-=======
->>>>>>>> Stashed changes:Assets/Backpack/Backpack(Closed).png.meta
->>>>>>> Stashed changes
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -55,28 +39,16 @@ TextureImporter:
     mipBias: 0
     wrapU: 1
     wrapV: 1
-<<<<<<< Updated upstream
-    wrapW: 1
-  nPOTScale: 0
-  lightmap: 0
-  compressionQuality: 50
-  spriteMode: 2
-=======
     wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
   spriteMode: 1
->>>>>>> Stashed changes
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-<<<<<<< Updated upstream
   spritePixelsToUnits: 100
-=======
-  spritePixelsToUnits: 700
->>>>>>> Stashed changes
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -91,26 +63,16 @@ TextureImporter:
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
-<<<<<<< Updated upstream
-  applyGammaDecoding: 0
-  swizzle: 50462976
-  cookieLightType: 0
-=======
   applyGammaDecoding: 1
   swizzle: 50462976
   cookieLightType: 2
->>>>>>> Stashed changes
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-<<<<<<< Updated upstream
-    textureCompression: 1
-=======
     textureCompression: 0
->>>>>>> Stashed changes
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -123,11 +85,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-<<<<<<< Updated upstream
-    textureCompression: 1
-=======
     textureCompression: 0
->>>>>>> Stashed changes
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -137,48 +95,12 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-<<<<<<< Updated upstream
-=======
-<<<<<<<< Updated upstream:Assets/Backpack/InventorySlot.png.meta
     sprites: []
-========
->>>>>>> Stashed changes
-    sprites:
-    - serializedVersion: 2
-      name: Backpack(Closed)_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 45
-        height: 46
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 31e852d2548344c30800000000000000
-      internalID: 4342657810453335571
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-<<<<<<< Updated upstream
-=======
->>>>>>>> Stashed changes:Assets/Backpack/Backpack(Closed).png.meta
->>>>>>> Stashed changes
     outline: []
     customData: 
     physicsShape: []
     bones: []
-<<<<<<< Updated upstream
-    spriteID: 
-=======
     spriteID: 5e97eb03825dee720800000000000000
->>>>>>> Stashed changes
     internalID: 0
     vertices: []
     indices: 
@@ -187,17 +109,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-<<<<<<< Updated upstream
-    nameFileIdTable:
-      Backpack(Closed)_0: 4342657810453335571
-=======
-<<<<<<<< Updated upstream:Assets/Backpack/InventorySlot.png.meta
     nameFileIdTable: {}
-========
-    nameFileIdTable:
-      Backpack(Closed)_0: 4342657810453335571
->>>>>>>> Stashed changes:Assets/Backpack/Backpack(Closed).png.meta
->>>>>>> Stashed changes
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -12,6 +12,7 @@ public class Playermovement : MonoBehaviour
 	public GameObject Inv;
 
 	private Item selectedItem;
+	private UsedItem selectedUsedItem;
 
 	void Start()
 	{ 
@@ -40,11 +41,45 @@ public class Playermovement : MonoBehaviour
 		selectedItem = item;
 	}
 
+	public void setUsedSelected(UsedItem usedItem)
+	{
+		selectedUsedItem = usedItem;
+	}
+
 	public void rotate(InputAction.CallbackContext context)
 	{
 		if (context.performed && Inv)
 		{
-			selectedItem.transform.Rotate(0,0,90);
+			if (selectedUsedItem)
+			{
+				selectedUsedItem.transform.Rotate(0,0,90);
+			}
+			else
+			{
+				selectedItem.transform.Rotate(0,0,90);
+			}
+		}
+	}
+
+	public void playereat(InputAction.CallbackContext context)
+	{
+		if (context.performed && Inv)
+		{
+			selectedItem.eat();
+		}
+	}
+	public void playerthrow(InputAction.CallbackContext context)
+	{
+		if (context.performed && Inv)
+		{
+			if (selectedUsedItem.isUsed)
+			{
+				selectedUsedItem.throwaway();
+			}
+			else
+			{
+				selectedItem.throwaway();
+			}
 		}
 	}
 

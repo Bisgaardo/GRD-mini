@@ -1,10 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class Item : MonoBehaviour
+public class UsedItem : MonoBehaviour
 {
-    private Vector3 originalPosition;
+   private Vector3 originalPosition;
     private bool isDragging;
     private Camera cam;
 
@@ -12,12 +11,10 @@ public class Item : MonoBehaviour
 
     public int Size;
     public Playermovement playermovement;
-    public GameObject used;
-
+    public bool isUsed;
     void Awake()
     {
         cam = Camera.main;
-        used.SetActive(false);
     }
 
     void OnMouseDown()
@@ -29,7 +26,7 @@ public class Item : MonoBehaviour
 
         originalPosition = transform.position;
         isDragging = true;
-        playermovement.setSelected(this);
+        playermovement.setUsedSelected(this);
     }
 
     void OnMouseDrag()
@@ -43,7 +40,7 @@ public class Item : MonoBehaviour
     {
         isDragging = false;
         TrySnap();
-        playermovement.setSelected(null);
+        playermovement.setUsedSelected(null);
     }
     
     void TrySnap()
@@ -88,7 +85,7 @@ public class Item : MonoBehaviour
         // Lock all overlapped slots to this item
         foreach (Slot slot in overlappedSlots)
         {
-            slot.OccupySlot(this);
+            slot.usedOccupySlot(this);
             lockedSlots.Add(slot);
         }
 
@@ -108,17 +105,12 @@ public class Item : MonoBehaviour
             Slot slot = hit.GetComponent<Slot>();
             if (slot != null)
             {
-                slot.OccupySlot(this);
+                slot.usedOccupySlot(this);
                 lockedSlots.Add(slot);
             }
         }
     }
-
-    public void eat()
-    {
-        used.SetActive(true);
-        Destroy(gameObject);
-    }
+    
     public void throwaway()
     {
         Destroy(gameObject);
