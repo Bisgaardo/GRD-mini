@@ -10,14 +10,19 @@ public class Hunger : MonoBehaviour
     public bool isDead;
     public bool beginHunger;
 
+    void Start()
+    {
+        beginHunger = true;
+    }
+
     void Update()
     {
-        if (beginHunger)
-        {
-            HungerSlider.value -= HungerDrainRate * Time.deltaTime;
-        }
+        if (!beginHunger) return;
 
-        if (HungerSlider.value <= 0)
+        HungerSlider.value -= HungerDrainRate * Time.deltaTime;
+        HungerSlider.value = Mathf.Clamp(HungerSlider.value, 0, HungerSlider.maxValue);
+
+        if (HungerSlider.value <= 0 && !isDead)
         {
             Die();
         }
