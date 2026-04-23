@@ -10,6 +10,7 @@ public class Playermovement : MonoBehaviour
 	
 	public Animator Animator;
 	public GameObject Inv;
+	public GameObject tut;
 
 	private Item selectedItem;
 	private UsedItem selectedUsedItem;
@@ -102,5 +103,13 @@ public class Playermovement : MonoBehaviour
 
 		if (move.x > 0)
 			Animator.SetBool("walkRight", true);
+	}
+
+	public void tutorial(InputAction.CallbackContext context)
+	{
+		if (context.started)
+		{
+			tut.SetActive(!tut.activeSelf);
+		}
 	}
 }
