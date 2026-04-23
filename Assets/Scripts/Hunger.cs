@@ -30,6 +30,12 @@ public class Hunger : MonoBehaviour
         }
     }
 
+    public void RestoreHunger(float amount)
+    {
+        HungerSlider.value += amount;
+        HungerSlider.value = Mathf.Clamp(HungerSlider.value, HungerSlider.minValue, HungerSlider.maxValue);
+    }
+
     void Die()
     {
         transform.position = Respawn.position;

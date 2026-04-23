@@ -14,6 +14,7 @@ public class Item : MonoBehaviour
     public Playermovement playermovement;
     public GameObject used;
 
+
     void Awake()
     {
         cam = Camera.main;
@@ -114,8 +115,17 @@ public class Item : MonoBehaviour
         }
     }
 
-    public void eat()
+    public void eat(Hunger hunger)
     {
+        if (hunger != null)
+        {
+            hunger.RestoreHunger(1f);
+        }
+        else
+        {
+            Debug.LogError("Hunger was null in Item.eat()");
+        }
+
         used.SetActive(true);
         Destroy(gameObject);
     }
