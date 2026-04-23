@@ -21,6 +21,10 @@ public class Hunger : MonoBehaviour
     {
         if (!beginHunger) return;
 
+        // Pause hunger while inventory is open
+        if (FindAnyObjectByType<Playermovement>().Inv.activeSelf)
+            return;
+
         HungerSlider.value -= HungerDrainRate * Time.deltaTime;
         HungerSlider.value = Mathf.Clamp(HungerSlider.value, HungerSlider.minValue, HungerSlider.maxValue);
 

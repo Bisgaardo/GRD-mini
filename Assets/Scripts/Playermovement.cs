@@ -10,10 +10,6 @@ public class Playermovement : MonoBehaviour
 	public GameObject Inv;
 	public GameObject tut;
 
-    public Animator Animator;
-    public GameObject Inv;
-    public GameObject tut;
-
     public Hunger hunger; // ✅ reference to hunger system
 
     private Item selectedItem;
@@ -27,6 +23,13 @@ public class Playermovement : MonoBehaviour
 
     void Update()
     {
+        // Stop all movement when inventory is open
+        if (Inv.activeSelf)
+        {
+            checkanimation(); // optional: keeps animations reset
+            return;
+        }
+
         move = MoveAction.ReadValue<Vector2>();
         Vector2 position = (Vector2)transform.position + move.normalized * 0.01f;
         transform.position = position;
