@@ -13,6 +13,8 @@ public class Slot : MonoBehaviour
     private Item currentItem;
     private UsedItem currentUsedItem;
 
+    public TrashType acceptedTrashType;
+
     public bool IsOccupied()
     {
         return currentItem != null;
@@ -34,12 +36,15 @@ public class Slot : MonoBehaviour
 
     public bool CanPlaceUsedItem(UsedItem item)
     {
-        // Used items allowed in trash and player inventory
-        if (slotType == SlotType.Trash)
-            return true;
-
+        // Player inventory accepts all used items
         if (slotType == SlotType.Player)
             return true;
+
+        // Trash inventory: only accept matching type
+        if (slotType == SlotType.Trash)
+        {
+            return item.trashType == acceptedTrashType;
+        }
 
         return false;
     }

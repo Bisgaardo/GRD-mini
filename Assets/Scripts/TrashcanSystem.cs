@@ -1,11 +1,22 @@
 using UnityEngine;
 
+public enum TrashType
+{
+    Waste,
+    FoodWaste,
+    Metal,
+    Plastic
+}
+
 public class TrashcanSystem : MonoBehaviour
 {
     public GameObject trashInventoryUI;
     public Playermovement player;
 
     public bool ExitTrashcan;
+
+    public TrashType acceptedType;
+
 
     private void Start()
     {

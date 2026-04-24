@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static TrashcanSystem;
 
 public class UsedItem : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class UsedItem : MonoBehaviour
     public bool isUsed;
     public LayerMask backpack;
     public bool assigned;
+
+    public TrashType trashType;
 
     void Awake()
     {
@@ -63,7 +66,6 @@ public class UsedItem : MonoBehaviour
         // Check all overlapped slots are free
         foreach (Slot slot in overlappedSlots)
         {
-            if (slot.IsOccupied() || slot.usedIsOccupied())
             // Block invalid slot types
             if (!slot.CanPlaceUsedItem(this))
             {
@@ -77,7 +79,6 @@ public class UsedItem : MonoBehaviour
                 ReturnToOrigin();
                 return;
             }
-
         }
 
         // Need at least 1 slot to snap to

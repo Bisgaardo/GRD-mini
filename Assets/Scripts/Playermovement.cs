@@ -15,11 +15,15 @@ public class Playermovement : MonoBehaviour
 
     private Item selectedItem;
     private UsedItem selectedUsedItem;
-    private TrashcanSystem TrashSystem;
     public TextMeshProUGUI backpacktext;
 
+<<<<<<< Updated upstream
     public int backpacksize = 0;
     public RandomizedFood RandomizedFood;
+=======
+    public int backpacksize = 9;
+    
+>>>>>>> Stashed changes
 
     void Start()
     {
