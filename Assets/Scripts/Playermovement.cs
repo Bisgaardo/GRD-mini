@@ -17,13 +17,9 @@ public class Playermovement : MonoBehaviour
     private UsedItem selectedUsedItem;
     public TextMeshProUGUI backpacktext;
 
-<<<<<<< Updated upstream
     public int backpacksize = 0;
     public RandomizedFood RandomizedFood;
-=======
-    public int backpacksize = 9;
     
->>>>>>> Stashed changes
 
     void Start()
     {
