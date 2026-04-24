@@ -15,7 +15,7 @@ public class Playermovement : MonoBehaviour
 
     private Item selectedItem;
     private UsedItem selectedUsedItem;
-<<<<<<< Updated upstream
+    private TrashcanSystem TrashSystem;
     public TextMeshProUGUI backpacktext;
 
     public int backpacksize = 9;
