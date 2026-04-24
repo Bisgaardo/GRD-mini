@@ -68,11 +68,24 @@ public class UsedItem : MonoBehaviour
         // Check all overlapped slots are free
         foreach (Slot slot in overlappedSlots)
         {
+<<<<<<< Updated upstream
+            if (slot.IsOccupied() || slot.usedIsOccupied())
+=======
+            // Block invalid slot types
+            if (!slot.CanPlaceUsedItem(this))
+>>>>>>> Stashed changes
+            {
+                ReturnToOrigin();
+                return;
+            }
+
+            // Block occupied slots
             if (slot.IsOccupied() || slot.usedIsOccupied())
             {
                 ReturnToOrigin();
                 return;
             }
+
         }
 
         // Need at least 1 slot to snap to
@@ -100,6 +113,7 @@ public class UsedItem : MonoBehaviour
         assigned = true;
 
         originalPosition = transform.position;
+
     }
 
     void ReturnToOrigin()

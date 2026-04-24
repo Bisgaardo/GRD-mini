@@ -11,13 +11,18 @@ public class Playermovement : MonoBehaviour
 	public GameObject Inv;
 	public GameObject tut;
 
-    public Hunger hunger; // ✅ reference to hunger system
+    public Hunger hunger; // reference to hunger system
 
     private Item selectedItem;
     private UsedItem selectedUsedItem;
+<<<<<<< Updated upstream
     public TextMeshProUGUI backpacktext;
 
     public int backpacksize = 9;
+=======
+    private TrashcanSystem TrashSystem;
+    
+>>>>>>> Stashed changes
 
     void Start()
     {
