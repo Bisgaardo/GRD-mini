@@ -14,6 +14,8 @@ public class Item : MonoBehaviour
     public Playermovement playermovement;
     public GameObject used;
 
+    public LayerMask backpack;
+
 
     void Awake()
     {
@@ -51,7 +53,7 @@ public class Item : MonoBehaviour
     {
         // Find all slots currently overlapping this item's collider
         Collider2D[] hits = Physics2D.OverlapBoxAll(transform.position,
-            GetComponent<Collider2D>().bounds.size, 0f);
+            GetComponent<Collider2D>().bounds.size, 0f, backpack);
 
         List<Slot> overlappedSlots = new List<Slot>();
         foreach (Collider2D hit in hits)
@@ -102,7 +104,7 @@ public class Item : MonoBehaviour
 
         // Re-lock original slots
         Collider2D[] hits = Physics2D.OverlapBoxAll(transform.position,
-            GetComponent<Collider2D>().bounds.size, 0f);
+            GetComponent<Collider2D>().bounds.size, 0f, backpack);
 
         foreach (Collider2D hit in hits)
         {
