@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,12 +15,15 @@ public class Playermovement : MonoBehaviour
 
     private Item selectedItem;
     private UsedItem selectedUsedItem;
+    public TextMeshProUGUI backpacktext;
+
+    public int backpacksize = 9;
 
     void Start()
     {
         MoveAction.Enable();
         Inv.SetActive(false);
-
+        backpacktext.gameObject.SetActive(false);
     }
 
     void Update()
@@ -42,7 +46,28 @@ public class Playermovement : MonoBehaviour
     {
         if (context.started)
         {
-            Inv.SetActive(!Inv.activeSelf);
+            if (backpacksize != 0) 
+            {
+                //items not assigned slots
+                backpacktext.gameObject.SetActive(true);
+                Inv.SetActive(true);
+
+            }
+
+            if (backpacksize == 0)
+            {
+                Inv.SetActive(!Inv.activeSelf);
+                backpacktext.gameObject.SetActive(!backpacktext.gameObject.activeSelf);
+
+            }
+
+            if (backpacksize >= 9)
+            {
+                backpacktext.gameObject.SetActive(true);
+                backpacktext.text = "You have too much stuff, eat or throwaway something!";
+
+            }
+            
         }
     }
 

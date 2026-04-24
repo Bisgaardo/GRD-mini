@@ -13,9 +13,12 @@ public class UsedItem : MonoBehaviour
     public Playermovement playermovement;
     public bool isUsed;
     public LayerMask backpack;
+    public bool assigned;
+
     void Awake()
     {
         cam = Camera.main;
+        playermovement.backpacksize += Size;
     }
 
     void OnMouseDown()
@@ -46,6 +49,10 @@ public class UsedItem : MonoBehaviour
     
     void TrySnap()
     {
+        if (assigned)
+        {
+            playermovement.backpacksize += Size;
+        }
         // Find all slots currently overlapping this item's collider
         Collider2D[] hits = Physics2D.OverlapBoxAll(transform.position,
             GetComponent<Collider2D>().bounds.size, 0f,backpack);
@@ -88,7 +95,9 @@ public class UsedItem : MonoBehaviour
         {
             slot.usedOccupySlot(this);
             lockedSlots.Add(slot);
+            playermovement.backpacksize--;
         }
+        assigned = true;
 
         originalPosition = transform.position;
     }
@@ -110,10 +119,15 @@ public class UsedItem : MonoBehaviour
                 lockedSlots.Add(slot);
             }
         }
+        assigned = false;
     }
     
     public void throwaway()
     {
+        if (assigned)
+        {
+            playermovement.backpacksize -= Size;
+        }
         Destroy(gameObject);
     }
 }

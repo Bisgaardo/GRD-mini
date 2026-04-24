@@ -15,6 +15,7 @@ public class Item : MonoBehaviour
     public GameObject used;
 
     public LayerMask backpack;
+    public bool assigned;
 
 
     void Awake()
@@ -51,6 +52,10 @@ public class Item : MonoBehaviour
     
     void TrySnap()
     {
+        if (assigned)
+        {
+            playermovement.backpacksize += Size;
+        }
         // Find all slots currently overlapping this item's collider
         Collider2D[] hits = Physics2D.OverlapBoxAll(transform.position,
             GetComponent<Collider2D>().bounds.size, 0f, backpack);
@@ -60,7 +65,10 @@ public class Item : MonoBehaviour
         {
             Slot slot = hit.GetComponent<Slot>();
             if (slot != null)
+            {
                 overlappedSlots.Add(slot);
+
+            }
         }
 
         // Check all overlapped slots are free
@@ -93,8 +101,10 @@ public class Item : MonoBehaviour
         {
             slot.OccupySlot(this);
             lockedSlots.Add(slot);
+            playermovement.backpacksize--;
         }
 
+        assigned = true;
         originalPosition = transform.position;
     }
 
@@ -115,6 +125,8 @@ public class Item : MonoBehaviour
                 lockedSlots.Add(slot);
             }
         }
+        assigned = false;
+
     }
 
     public void eat(Hunger hunger)
@@ -133,6 +145,10 @@ public class Item : MonoBehaviour
     }
     public void throwaway()
     {
+        if (assigned)
+        {
+            playermovement.backpacksize -= Size;
+        }
         Destroy(gameObject);
     }
 }

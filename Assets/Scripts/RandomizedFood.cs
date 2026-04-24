@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class RandomizedFood : MonoBehaviour
 {
-    public GameObject[] sixItems;
-    public GameObject[] fourItems;
+    public List<GameObject> fourItems = new List<GameObject>();
+    public List<GameObject> threeItems = new List<GameObject>();
+    public List<GameObject> twoItems = new List<GameObject>();
+    public List<GameObject> oneItems = new List<GameObject>();
+    /*public GameObject[] fourItems;
     public GameObject[] threeItems;
     public GameObject[] twoItems;
-    public GameObject[] oneItems;
+    public GameObject[] oneItems;*/
 
-    public int sixrandom;
+
     public int fourrandom;
     public int threerandom;
     public int tworandom;
@@ -20,10 +23,6 @@ public class RandomizedFood : MonoBehaviour
     void Start()
     {
         
-        foreach (var t in sixItems)
-        {
-            t.SetActive(false);
-        }
         foreach (var t in fourItems)
         {
             t.SetActive(false);
@@ -48,10 +47,9 @@ public class RandomizedFood : MonoBehaviour
         if (r == 0)
         {
             randomize();
-            sixItems[sixrandom].SetActive(true);
+            fourItems[fourrandom].SetActive(true);
             twoItems[tworandom].SetActive(true);
-            oneItems[onerandom].SetActive(true);
-            Debug.Log("" +sixrandom + tworandom + onerandom);
+            threeItems[threerandom].SetActive(true);
         }
         if (r == 1)
         {
@@ -59,7 +57,9 @@ public class RandomizedFood : MonoBehaviour
             fourItems[fourrandom].SetActive(true);
             twoItems[tworandom].SetActive(true);
             oneItems[onerandom].SetActive(true);
-            Debug.Log("" +sixrandom + tworandom + onerandom);
+            remove();
+            randomize();
+            twoItems[tworandom].SetActive(true);
 
         }
         if (r == 2)
@@ -67,10 +67,11 @@ public class RandomizedFood : MonoBehaviour
             randomize();
             threeItems[threerandom].SetActive(true);
             twoItems[tworandom].SetActive(true);
+            oneItems[onerandom].SetActive(true);
+            remove();
             randomize();
             twoItems[tworandom].SetActive(true);
             oneItems[onerandom].SetActive(true);
-            Debug.Log("" +threerandom + tworandom + onerandom);
 
         }
         if (r == 3)
@@ -78,29 +79,25 @@ public class RandomizedFood : MonoBehaviour
             randomize();
             fourItems[fourrandom].SetActive(true);
             twoItems[tworandom].SetActive(true);
-            
-            randomize();
-            twoItems[tworandom].SetActive(true);
-
-            oneItems[onerandom].SetActive(true);
-            Debug.Log("" +fourrandom + tworandom + onerandom);
+            threeItems[threerandom].SetActive(true);
 
         }
     }
 
     public void randomize()
     {
-        sixrandom = Random.Range(0, sixItems.Length);
-        fourrandom = Random.Range(0, fourItems.Length);
-        threerandom = Random.Range(0, threeItems.Length);
-        tworandom = Random.Range(0, twoItems.Length);
-        onerandom = Random.Range(0, oneItems.Length);
+        fourrandom = Random.Range(0, fourItems.Count);
+        threerandom = Random.Range(0, threeItems.Count);
+        tworandom = Random.Range(0, twoItems.Count);
+        onerandom = Random.Range(0, oneItems.Count);
         
     }
 
-    // Update is called once per frame
-    void Update()
+    private void remove()
     {
-        
+        fourItems.RemoveAt(fourrandom);
+        threeItems.RemoveAt(threerandom);
+        twoItems.RemoveAt(tworandom);
+        oneItems.RemoveAt(onerandom);
     }
 }
