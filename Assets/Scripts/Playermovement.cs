@@ -18,11 +18,8 @@ public class Playermovement : MonoBehaviour
     private TrashcanSystem TrashSystem;
     public TextMeshProUGUI backpacktext;
 
-    public int backpacksize = 9;
-=======
-    private TrashcanSystem TrashSystem;
-    
->>>>>>> Stashed changes
+    public int backpacksize = 0;
+    public RandomizedFood RandomizedFood;
 
     void Start()
     {
@@ -51,28 +48,27 @@ public class Playermovement : MonoBehaviour
     {
         if (context.started)
         {
-            if (backpacksize != 0) 
+            if (backpacksize >= RandomizedFood.foodamount)
             {
-                //items not assigned slots
-                backpacktext.gameObject.SetActive(true);
+                // Can't close — too full
                 Inv.SetActive(true);
-
-            }
-
-            if (backpacksize == 0)
-            {
-                Inv.SetActive(!Inv.activeSelf);
-                backpacktext.gameObject.SetActive(!backpacktext.gameObject.activeSelf);
-
-            }
-
-            if (backpacksize >= 9)
-            {
                 backpacktext.gameObject.SetActive(true);
                 backpacktext.text = "You have too much stuff, eat or throwaway something!";
-
+                return;
             }
-            
+
+            if (backpacksize > 0)
+            {
+                // Can't close — items still unassigned
+                Inv.SetActive(true);
+                backpacktext.gameObject.SetActive(true);
+                backpacktext.text = "Assign all items to a slot first!";
+                return;
+            }
+            // backpacksize == 0, free to toggle
+            Inv.SetActive(!Inv.activeSelf);
+            backpacktext.gameObject.SetActive(!backpacktext.gameObject.activeSelf);
+
         }
     }
 

@@ -52,9 +52,10 @@ public class Item : MonoBehaviour
     
     void TrySnap()
     {
-        if (assigned)
+        if (!assigned)
         {
-            playermovement.backpacksize += Size;
+            playermovement.backpacksize--;
+            assigned = true;
         }
         // Find all slots currently overlapping this item's collider
         Collider2D[] hits = Physics2D.OverlapBoxAll(transform.position,
@@ -101,10 +102,8 @@ public class Item : MonoBehaviour
         {
             slot.OccupySlot(this);
             lockedSlots.Add(slot);
-            playermovement.backpacksize--;
         }
 
-        assigned = true;
         originalPosition = transform.position;
     }
 
@@ -125,7 +124,6 @@ public class Item : MonoBehaviour
                 lockedSlots.Add(slot);
             }
         }
-        assigned = false;
 
     }
 
@@ -145,9 +143,13 @@ public class Item : MonoBehaviour
     }
     public void throwaway()
     {
+        foreach (Slot slot in lockedSlots)
+            slot.ClearSlot();
+        lockedSlots.Clear();
+
         if (assigned)
         {
-            playermovement.backpacksize -= Size;
+            playermovement.backpacksize--;
         }
         Destroy(gameObject);
     }
