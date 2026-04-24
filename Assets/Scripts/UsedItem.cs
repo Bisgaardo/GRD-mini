@@ -12,6 +12,7 @@ public class UsedItem : MonoBehaviour
     public int Size;
     public Playermovement playermovement;
     public bool isUsed;
+    public LayerMask backpack;
     void Awake()
     {
         cam = Camera.main;
@@ -47,7 +48,7 @@ public class UsedItem : MonoBehaviour
     {
         // Find all slots currently overlapping this item's collider
         Collider2D[] hits = Physics2D.OverlapBoxAll(transform.position,
-            GetComponent<Collider2D>().bounds.size, 0f);
+            GetComponent<Collider2D>().bounds.size, 0f,backpack);
 
         List<Slot> overlappedSlots = new List<Slot>();
         foreach (Collider2D hit in hits)
@@ -60,7 +61,7 @@ public class UsedItem : MonoBehaviour
         // Check all overlapped slots are free
         foreach (Slot slot in overlappedSlots)
         {
-            if (slot.IsOccupied() && slot.usedIsOccupied())
+            if (slot.IsOccupied() || slot.usedIsOccupied())
             {
                 ReturnToOrigin();
                 return;
@@ -98,7 +99,7 @@ public class UsedItem : MonoBehaviour
 
         // Re-lock original slots
         Collider2D[] hits = Physics2D.OverlapBoxAll(transform.position,
-            GetComponent<Collider2D>().bounds.size, 0f);
+            GetComponent<Collider2D>().bounds.size, 0f,backpack);
 
         foreach (Collider2D hit in hits)
         {
