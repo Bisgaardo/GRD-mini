@@ -19,6 +19,7 @@ public class Playermovement : MonoBehaviour
     {
         MoveAction.Enable();
         Inv.SetActive(false);
+
     }
 
     void Update()

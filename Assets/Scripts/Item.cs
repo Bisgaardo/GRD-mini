@@ -64,7 +64,7 @@ public class Item : MonoBehaviour
         // Check all overlapped slots are free
         foreach (Slot slot in overlappedSlots)
         {
-            if (slot.IsOccupied() && slot.usedIsOccupied())
+            if (slot.IsOccupied() || slot.usedIsOccupied())
             {
                 ReturnToOrigin();
                 return;

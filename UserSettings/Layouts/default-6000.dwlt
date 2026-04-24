@@ -627,7 +627,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 0}
+      scrollPos: {x: 0, y: 64}
       m_SelectedIDs: 
       m_LastClickedID: 0
       m_ExpandedIDs: 56effdff4ef2fdff18f3fdff10f6fdff32f7fdffec7cffff827dffffe27dffffe67dffff087effffaae8ffff40e9ffffa0e9ffffbae9ffffb2eeffffd8f2ffffc2f9ffffecce00000cd1000022d1000060d1000088c501000cc60100a4c60100d6c60100cccc01000acd010044cd0100
