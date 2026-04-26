@@ -47,6 +47,10 @@ public class UsedItem : MonoBehaviour
         isDragging = false;
         TrySnap();
         playermovement.setUsedSelected(null);
+        if (assigned && !isUsed)
+        {
+            playermovement.foodAmount--;
+        }
     }
     
     void TrySnap()
@@ -102,18 +106,15 @@ public class UsedItem : MonoBehaviour
             slot.usedOccupySlot(this);
             lockedSlots.Add(slot);
         }
-        if (assigned)
-        {
-            playermovement.backpacksize++;
-        }
+
         assigned = true;
-
         originalPosition = transform.position;
-
+        
     }
 
     void ReturnToOrigin()
     {
+        assigned = false;
         transform.position = originalPosition;
 
         // Re-lock original slots
@@ -122,6 +123,7 @@ public class UsedItem : MonoBehaviour
 
         foreach (Collider2D hit in hits)
         {
+            
             Slot slot = hit.GetComponent<Slot>();
             if (slot != null)
             {
@@ -129,11 +131,6 @@ public class UsedItem : MonoBehaviour
                 lockedSlots.Add(slot);
             }
         }
-        if (assigned)
-        {
-            return;
-        }
-        assigned = false;
     }
     
     public void throwaway()
@@ -141,11 +138,6 @@ public class UsedItem : MonoBehaviour
         foreach (Slot slot in lockedSlots)
             slot.ClearSlot();
         lockedSlots.Clear();
-
-        if (assigned)
-        {
-            playermovement.backpacksize--;
-        }
         Destroy(gameObject);
     }
 }

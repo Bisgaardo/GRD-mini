@@ -54,9 +54,11 @@ public class Item : MonoBehaviour
     {
         if (!assigned)
         {
-            playermovement.backpacksize--;
+            playermovement.foodAmount--;
             assigned = true;
         }
+
+        assigned = true;
         // Find all slots currently overlapping this item's collider
         Collider2D[] hits = Physics2D.OverlapBoxAll(transform.position,
             GetComponent<Collider2D>().bounds.size, 0f, backpack);
@@ -146,11 +148,6 @@ public class Item : MonoBehaviour
         foreach (Slot slot in lockedSlots)
             slot.ClearSlot();
         lockedSlots.Clear();
-
-        if (assigned)
-        {
-            playermovement.backpacksize--;
-        }
         Destroy(gameObject);
     }
 }

@@ -8,10 +8,7 @@ public class RandomizedFood : MonoBehaviour
     public List<GameObject> threeItems = new List<GameObject>();
     public List<GameObject> twoItems = new List<GameObject>();
     public List<GameObject> oneItems = new List<GameObject>();
-    /*public GameObject[] fourItems;
-    public GameObject[] threeItems;
-    public GameObject[] twoItems;
-    public GameObject[] oneItems;*/
+  
     public Playermovement Playermovement;
     public int foodamount;
 
@@ -51,7 +48,7 @@ public class RandomizedFood : MonoBehaviour
             fourItems[fourrandom].SetActive(true);
             twoItems[tworandom].SetActive(true);
             threeItems[threerandom].SetActive(true);
-            foodamount = 3;
+            Playermovement.foodAmount = 3;
 
         }
         if (r == 1)
@@ -63,7 +60,7 @@ public class RandomizedFood : MonoBehaviour
             remove();
             randomize();
             twoItems[tworandom].SetActive(true);
-            foodamount = 4;
+            Playermovement.foodAmount = 4;
 
         }
         if (r == 2)
@@ -76,7 +73,7 @@ public class RandomizedFood : MonoBehaviour
             randomize();
             twoItems[tworandom].SetActive(true);
             oneItems[onerandom].SetActive(true);
-            foodamount = 5;
+            Playermovement.foodAmount = 5;
 
         }
         if (r == 3)
@@ -85,7 +82,7 @@ public class RandomizedFood : MonoBehaviour
             fourItems[fourrandom].SetActive(true);
             twoItems[tworandom].SetActive(true);
             threeItems[threerandom].SetActive(true);
-            foodamount = 3;
+            Playermovement.foodAmount = 3;
 
 
         }

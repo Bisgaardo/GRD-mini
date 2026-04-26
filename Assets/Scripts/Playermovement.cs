@@ -17,14 +17,14 @@ public class Playermovement : MonoBehaviour
     private UsedItem selectedUsedItem;
     public TextMeshProUGUI backpacktext;
 
-    public int backpacksize = 0;
+    public int foodAmount = 0;
     public RandomizedFood RandomizedFood;
     
 
     void Start()
     {
         MoveAction.Enable();
-        Inv.SetActive(false);
+        Inv.SetActive(true);
         backpacktext.gameObject.SetActive(false);
     }
 
@@ -48,24 +48,24 @@ public class Playermovement : MonoBehaviour
     {
         if (context.started)
         {
-            if (backpacksize >= RandomizedFood.foodamount)
+            if (foodAmount != 0)
             {
                 // Can't close — too full
                 Inv.SetActive(true);
                 backpacktext.gameObject.SetActive(true);
-                backpacktext.text = "You have too much stuff, eat or throwaway something!";
+                backpacktext.text = "Assign all items to a slot first!";
                 return;
             }
 
-            if (backpacksize > 0)
+            /*if (backpacksize > 0)
             {
                 // Can't close — items still unassigned
                 Inv.SetActive(true);
                 backpacktext.gameObject.SetActive(true);
                 backpacktext.text = "Assign all items to a slot first!";
                 return;
-            }
-            // backpacksize == 0, free to toggle
+            }*/
+
             Inv.SetActive(!Inv.activeSelf);
             backpacktext.gameObject.SetActive(!backpacktext.gameObject.activeSelf);
 
@@ -114,6 +114,7 @@ public class Playermovement : MonoBehaviour
         }
 
         selectedItem.eat(hunger);
+        foodAmount++;
     }
 
     public void playerthrow(InputAction.CallbackContext context)
