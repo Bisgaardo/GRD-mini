@@ -17,6 +17,11 @@ public class UsedItem : MonoBehaviour
     public bool assigned;
 
     public TrashType trashType;
+    
+    public void Start()
+    {
+        playermovement.foodAmount++;
+    }
 
     void Awake()
     {
@@ -47,10 +52,7 @@ public class UsedItem : MonoBehaviour
         isDragging = false;
         TrySnap();
         playermovement.setUsedSelected(null);
-        if (assigned && !isUsed)
-        {
-            playermovement.foodAmount--;
-        }
+        
     }
     
     void TrySnap()
@@ -139,5 +141,6 @@ public class UsedItem : MonoBehaviour
             slot.ClearSlot();
         lockedSlots.Clear();
         Destroy(gameObject);
+        playermovement.foodAmount--;
     }
 }

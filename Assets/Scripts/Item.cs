@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -23,6 +24,7 @@ public class Item : MonoBehaviour
         cam = Camera.main;
         used.SetActive(false);
     }
+    
 
     void OnMouseDown()
     {
@@ -58,7 +60,6 @@ public class Item : MonoBehaviour
             assigned = true;
         }
 
-        assigned = true;
         // Find all slots currently overlapping this item's collider
         Collider2D[] hits = Physics2D.OverlapBoxAll(transform.position,
             GetComponent<Collider2D>().bounds.size, 0f, backpack);

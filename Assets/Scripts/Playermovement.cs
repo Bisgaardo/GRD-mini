@@ -16,9 +16,13 @@ public class Playermovement : MonoBehaviour
     private Item selectedItem;
     private UsedItem selectedUsedItem;
     public TextMeshProUGUI backpacktext;
+    public GameObject backpacktextobject;
 
     public int foodAmount = 0;
     public RandomizedFood RandomizedFood;
+
+    public bool trashbag;
+    public GameObject trashbagInv;
     
 
     void Start()
@@ -26,6 +30,7 @@ public class Playermovement : MonoBehaviour
         MoveAction.Enable();
         Inv.SetActive(true);
         backpacktext.gameObject.SetActive(false);
+        backpacktextobject.SetActive(false);
     }
 
     void Update()
@@ -38,7 +43,7 @@ public class Playermovement : MonoBehaviour
         }
 
         move = MoveAction.ReadValue<Vector2>();
-        Vector2 position = (Vector2)transform.position + move.normalized * 0.01f;
+        Vector2 position = (Vector2)transform.position + move.normalized * 0.02f;
         transform.position = position;
 
         checkanimation();
@@ -48,27 +53,28 @@ public class Playermovement : MonoBehaviour
     {
         if (context.started)
         {
+            if (trashbag)
+            {
+                trashbagInv.SetActive(!trashbagInv.activeSelf);
+            }
             if (foodAmount != 0)
             {
                 // Can't close — too full
                 Inv.SetActive(true);
                 backpacktext.gameObject.SetActive(true);
                 backpacktext.text = "Assign all items to a slot first!";
+                backpacktextobject.SetActive(true);
                 return;
             }
 
-            /*if (backpacksize > 0)
+            if (foodAmount == 0) 
             {
-                // Can't close — items still unassigned
-                Inv.SetActive(true);
-                backpacktext.gameObject.SetActive(true);
-                backpacktext.text = "Assign all items to a slot first!";
-                return;
-            }*/
+                backpacktextobject.SetActive(false);
+                backpacktext.gameObject.SetActive(false);
+
+            }
 
             Inv.SetActive(!Inv.activeSelf);
-            backpacktext.gameObject.SetActive(!backpacktext.gameObject.activeSelf);
-
         }
     }
 
@@ -114,7 +120,6 @@ public class Playermovement : MonoBehaviour
         }
 
         selectedItem.eat(hunger);
-        foodAmount++;
     }
 
     public void playerthrow(InputAction.CallbackContext context)

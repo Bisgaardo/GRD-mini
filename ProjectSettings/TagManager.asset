@@ -16,7 +16,7 @@ TagManager:
   - Water
   - UI
   - Backpack
-  - 
+  - Tutorial
   - 
   - 
   - 
@@ -47,6 +47,9 @@ TagManager:
     locked: 0
   - name: Inventory
     uniqueID: 3725048425
+    locked: 0
+  - name: Tutorial
+    uniqueID: 3345304727
     locked: 0
   m_RenderingLayers:
   - Default
