@@ -57,6 +57,11 @@ public class UsedItem : MonoBehaviour
     
     void TrySnap()
     {
+        if (!assigned)
+        {
+            playermovement.foodAmount--;
+            assigned = true;
+        }
         // Find all slots currently overlapping this item's collider
         Collider2D[] hits = Physics2D.OverlapBoxAll(transform.position,
             GetComponent<Collider2D>().bounds.size, 0f,backpack);
@@ -75,6 +80,12 @@ public class UsedItem : MonoBehaviour
             // Block invalid slot types
             if (!slot.CanPlaceUsedItem(this))
             {
+                if (slot.slotType == SlotType.Trash && slot.acceptedTrashType != trashType)
+                {
+                    playermovement.backpacktextobject.SetActive(true);
+                    playermovement.backpacktext.gameObject.SetActive(true);
+                    playermovement.backpacktext.text = "This trashcan only accepts " + slot.acceptedTrashType;
+                }
                 ReturnToOrigin();
                 return;
             }
@@ -116,7 +127,6 @@ public class UsedItem : MonoBehaviour
 
     void ReturnToOrigin()
     {
-        assigned = false;
         transform.position = originalPosition;
 
         // Re-lock original slots
@@ -141,6 +151,5 @@ public class UsedItem : MonoBehaviour
             slot.ClearSlot();
         lockedSlots.Clear();
         Destroy(gameObject);
-        playermovement.foodAmount--;
     }
 }

@@ -9,11 +9,12 @@ public enum SlotType
 public class Slot : MonoBehaviour
 {
     public SlotType slotType;
-
+    
     private Item currentItem;
     private UsedItem currentUsedItem;
 
     public TrashType acceptedTrashType;
+    public Playermovement Playermovement;
 
     public bool IsOccupied()
     {
@@ -45,7 +46,7 @@ public class Slot : MonoBehaviour
         {
             return item.trashType == acceptedTrashType;
         }
-
+        
         return false;
     }
 

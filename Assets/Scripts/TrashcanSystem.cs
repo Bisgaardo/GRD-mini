@@ -1,3 +1,5 @@
+using System;
+using NUnit.Framework.Internal.Filters;
 using UnityEngine;
 
 public enum TrashType
@@ -10,17 +12,19 @@ public enum TrashType
 
 public class TrashcanSystem : MonoBehaviour
 {
-    public GameObject trashInventoryUI;
+    public SpriteRenderer trashInventoryUI;
     public Playermovement player;
+    public Slot[] Slots;
 
     public bool ExitTrashcan;
 
     public TrashType acceptedType;
+    public Sprite[] trashcanType;
 
 
     private void Start()
     {
-        trashInventoryUI.SetActive(false); // ensure it's hidden at start
+        trashInventoryUI.gameObject.SetActive(false); // ensure it's hidden at start
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -30,7 +34,20 @@ public class TrashcanSystem : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Player entered trashcan");
-            trashInventoryUI.SetActive(true);
+            trashInventoryUI.gameObject.SetActive(true);
+            //ensures the trashcan is displayed as the correct type
+            int spriteindex = (int)acceptedType;  
+            trashInventoryUI.sprite = trashcanType[spriteindex];
+
+            foreach (Slot slot in Slots)
+            {
+                //this foreach loop assigns the slots type to each type of trashcan like metal, plastic etc.
+                if (slot.slotType == SlotType.Trash)
+                {
+                    Debug.Log(acceptedType);
+                    slot.acceptedTrashType = acceptedType;
+                }
+            }
         }
     }
 
@@ -38,7 +55,7 @@ public class TrashcanSystem : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            trashInventoryUI.SetActive(false);
+            trashInventoryUI.gameObject.SetActive(false);
         }
     }
 }
