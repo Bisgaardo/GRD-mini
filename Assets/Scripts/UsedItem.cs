@@ -1,10 +1,12 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static TrashcanSystem;
 
 public class UsedItem : MonoBehaviour
 {
-   private Vector3 originalPosition;
+    private Vector3 originalPosition;
     private bool isDragging;
     private Camera cam;
 
@@ -17,6 +19,8 @@ public class UsedItem : MonoBehaviour
     public bool assigned;
 
     public TrashType trashType;
+
+    public Slot slot;
     
     public void Start()
     {
@@ -57,11 +61,7 @@ public class UsedItem : MonoBehaviour
     
     void TrySnap()
     {
-        if (!assigned)
-        {
-            playermovement.foodAmount--;
-            assigned = true;
-        }
+        
         // Find all slots currently overlapping this item's collider
         Collider2D[] hits = Physics2D.OverlapBoxAll(transform.position,
             GetComponent<Collider2D>().bounds.size, 0f,backpack);
@@ -119,6 +119,12 @@ public class UsedItem : MonoBehaviour
             slot.usedOccupySlot(this);
             lockedSlots.Add(slot);
         }
+        
+        if (!assigned)
+        {
+            playermovement.foodAmount--;
+            assigned = true;
+        }
 
         assigned = true;
         originalPosition = transform.position;
@@ -152,4 +158,19 @@ public class UsedItem : MonoBehaviour
         lockedSlots.Clear();
         Destroy(gameObject);
     }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.CompareTag("ThrowAway") && slot.acceptedTrashType == trashType)
+        {
+            StartCoroutine(waittrash());
+        }
+    }
+
+    IEnumerator waittrash()
+    {
+        yield return new WaitForSeconds(5);
+        throwaway();
+    }
+
 }
