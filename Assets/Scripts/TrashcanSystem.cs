@@ -1,5 +1,6 @@
 using System;
 using NUnit.Framework.Internal.Filters;
+using TMPro;
 using UnityEngine;
 
 public enum TrashType
@@ -20,7 +21,8 @@ public class TrashcanSystem : MonoBehaviour
 
     public TrashType acceptedType;
     public Sprite[] trashcanType;
-
+    public TextMeshProUGUI trashtext;
+    public Slot slot;
 
     private void Start()
     {
@@ -29,25 +31,27 @@ public class TrashcanSystem : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Entered trigger with: " + other.name);
 
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Player entered trashcan");
+            
             trashInventoryUI.gameObject.SetActive(true);
             //ensures the trashcan is displayed as the correct type
             int spriteindex = (int)acceptedType;  
             trashInventoryUI.sprite = trashcanType[spriteindex];
+            
 
             foreach (Slot slot in Slots)
             {
                 //this foreach loop assigns the slots type to each type of trashcan like metal, plastic etc.
                 if (slot.slotType == SlotType.Trash)
                 {
-                    Debug.Log(acceptedType);
                     slot.acceptedTrashType = acceptedType;
+                    
                 }
+                
             }
+            trashtext.text = ""+slot.acceptedTrashType;
         }
     }
 

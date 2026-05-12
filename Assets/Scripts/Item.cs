@@ -149,6 +149,17 @@ public class Item : MonoBehaviour
         foreach (Slot slot in lockedSlots)
             slot.ClearSlot();
         lockedSlots.Clear();
-        Destroy(gameObject);
+        playermovement.emptycheck++;
+        playermovement.empty();
+        if (assigned)
+        {
+            Destroy(gameObject);
+            
+        }
+        else
+        {
+            playermovement.foodAmount--;
+            Destroy(gameObject);
+        }
     }
 }

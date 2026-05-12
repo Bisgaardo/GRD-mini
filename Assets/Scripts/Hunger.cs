@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class Hunger : MonoBehaviour
 {
     public Slider HungerSlider;
-    public float HungerDrainRate = 0.01f;
+    public float HungerDrainRate = 0.5f;
 
     public Transform Respawn;
     public bool isDead;

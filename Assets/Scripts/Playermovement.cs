@@ -1,6 +1,8 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Playermovement : MonoBehaviour
 { 
@@ -23,6 +25,14 @@ public class Playermovement : MonoBehaviour
 
     public bool trashbag;
     public GameObject trashbagInv;
+
+    public GameObject NPC;
+
+    public int emptycheck;
+
+    public int littercheck;
+
+    public bool npcCheck;
     
 
     void Start()
@@ -31,6 +41,9 @@ public class Playermovement : MonoBehaviour
         Inv.SetActive(true);
         backpacktext.gameObject.SetActive(false);
         backpacktextobject.SetActive(false);
+        NPC.SetActive(false);
+        trashbagInv.SetActive(false);
+        
     }
 
     void Update()
@@ -53,10 +66,7 @@ public class Playermovement : MonoBehaviour
     {
         if (context.started)
         {
-            if (trashbag)
-            {
-                trashbagInv.SetActive(!trashbagInv.activeSelf);
-            }
+            
             if (foodAmount != 0)
             {
                 // Can't close — too full
@@ -73,6 +83,16 @@ public class Playermovement : MonoBehaviour
                 backpacktext.gameObject.SetActive(false);
 
             }
+            if (trashbag)
+            {
+                trashbagInv.SetActive(!trashbagInv.activeSelf);
+            }
+
+            if (trashbag && NPC!= null || npcCheck)
+            {
+                NPC.SetActive(false);
+            }
+            
 
             Inv.SetActive(!Inv.activeSelf);
         }
@@ -120,6 +140,8 @@ public class Playermovement : MonoBehaviour
         }
 
         selectedItem.eat(hunger);
+        emptycheck++;
+        empty();
     }
 
     public void playerthrow(InputAction.CallbackContext context)
@@ -128,11 +150,44 @@ public class Playermovement : MonoBehaviour
         {
             if (selectedUsedItem != null && selectedUsedItem.isUsed)
             {
+                if (trashbag)
+                {
+                    return;
+                }
+                if (littercheck > 3) 
+                {
+                    NPC.SetActive(true);
+                    backpacktextobject.SetActive(true);
+                    backpacktext.gameObject.SetActive(true);
+                    backpacktext.text = "Hey! dont litter the beautiful nature. Take this trash bag instead!";
+                    trashbag = true;
+                    trashbagInv.SetActive(true);
+                }
+                
+
+                littercheck++;
                 selectedUsedItem.throwaway();
+                //emptycheck++;
             }
             else if (selectedItem != null)
             {
+                if (trashbag)
+                {
+                    return;
+                }
+                if (littercheck > 3) 
+                {
+                    NPC.SetActive(true);
+                    backpacktextobject.SetActive(true);
+                    backpacktext.gameObject.SetActive(true);
+                    backpacktext.text = "Hey! dont litter the beautiful nature. Take this trash bag instead!";
+                    trashbag = true;
+                    trashbagInv.SetActive(true);
+                }
+                
+                littercheck++;
                 selectedItem.throwaway();
+                //emptycheck++;
             }
         }
     }
@@ -162,6 +217,29 @@ public class Playermovement : MonoBehaviour
         if (context.started)
         {
             tut.SetActive(!tut.activeSelf);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.CompareTag("Finish"))
+        {
+            SceneManager.LoadScene("EndScene");
+        }
+    }
+
+    public void empty()
+    {
+        if (emptycheck > 2)
+        {
+            NPC.SetActive(true);
+            backpacktextobject.SetActive(true);
+            backpacktext.gameObject.SetActive(true);
+            backpacktext.text = "Wow you look hungry here have some food";
+            RandomizedFood.newFood();
+            
+            emptycheck = 0;
+            npcCheck = true;
         }
     }
 }
