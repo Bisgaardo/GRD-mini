@@ -33,6 +33,9 @@ public class Playermovement : MonoBehaviour
     public int littercheck;
 
     public bool npcCheck;
+
+    public GameObject NPCVoice;
+    public TextMeshProUGUI NpcText;
     
 
     void Start()
@@ -43,7 +46,8 @@ public class Playermovement : MonoBehaviour
         backpacktextobject.SetActive(false);
         NPC.SetActive(false);
         trashbagInv.SetActive(false);
-        
+        NPCVoice.SetActive(false);
+        NpcText.gameObject.SetActive(false);
     }
 
     void Update()
@@ -93,7 +97,8 @@ public class Playermovement : MonoBehaviour
                 NPC.SetActive(false);
             }
             
-
+            NpcText.gameObject.SetActive(false);
+            NPCVoice.SetActive(false);
             Inv.SetActive(!Inv.activeSelf);
         }
     }
@@ -157,9 +162,9 @@ public class Playermovement : MonoBehaviour
                 if (littercheck > 3) 
                 {
                     NPC.SetActive(true);
-                    backpacktextobject.SetActive(true);
-                    backpacktext.gameObject.SetActive(true);
-                    backpacktext.text = "Hey! dont litter the beautiful nature. Take this trash bag instead!";
+                    NPCVoice.SetActive(true);
+                    NpcText.gameObject.SetActive(true);
+                    NpcText.text = "Hey! dont litter the beautiful nature. Take this trash bag instead!";
                     trashbag = true;
                     trashbagInv.SetActive(true);
                 }
@@ -178,9 +183,9 @@ public class Playermovement : MonoBehaviour
                 if (littercheck > 3) 
                 {
                     NPC.SetActive(true);
-                    backpacktextobject.SetActive(true);
-                    backpacktext.gameObject.SetActive(true);
-                    backpacktext.text = "Hey! dont litter the beautiful nature. Take this trash bag instead!";
+                    NPCVoice.SetActive(true);
+                    NpcText.gameObject.SetActive(true);
+                    NpcText.text = "Hey! dont litter the beautiful nature. Take this trash bag instead!";
                     trashbag = true;
                     trashbagInv.SetActive(true);
                 }
